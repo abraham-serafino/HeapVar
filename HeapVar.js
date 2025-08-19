@@ -35,24 +35,15 @@ function IS_NULL_HEAP (ptr) {
 }
 
 (function main() {
-    // heap myHeapVar := 21
     let myHeapVar = [[21]];
-
-    // $myRef := myHeapVar
     let myRef = myHeapVar;
 
-    // stdout.writeln($myRef)
-    console.log(DEREF_HEAP(myRef));
-    // $myRef = 100
+    console.log(DEREF_HEAP(myRef)); // 21
     DEREF_HEAP_SET(myRef, 100);
-    // stdout.writeln($myHeapVar)
-    console.log(DEREF_HEAP(myHeapVar));
+    console.log(DEREF_HEAP(myHeapVar)); // 100
 
-    // myHeapInt.delete()
     DELETE_HEAP(myHeapVar);
-    // stdout.writeln(myRef.isNull)
-    console.log(IS_NULL_HEAP(myRef));
+    console.log(IS_NULL_HEAP(myRef)); // true
 
-    // throws a null reference exception
-    DEREF_HEAP_SET(myRef, 100);
+    DEREF_HEAP_SET(myRef, 100); // throws an exception
 })()
