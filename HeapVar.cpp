@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cassert>
-#include <unistd.h>
 
 using namespace std;
 
@@ -10,8 +9,8 @@ using namespace std;
 
 #define DEREF_HEAP(ptr) \
     ((ptr == nullptr || (*ptr) == nullptr) ? ( \
-        write(1, "\nNull reference exception\n", 25),\
-        _exit(1),\
+        cerr << endl << "Null reference exception" << endl,\
+        exit(1),\
     (**ptr)) : (**ptr))
 
 #define DELETE_HEAP(ptr) \
