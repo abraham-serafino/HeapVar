@@ -23,12 +23,13 @@ int main(void) {
     HEAP_VAR(double, myHeapVar, 21);
     HEAP_REF(double, myRef, myHeapVar);
 
-    cout << DEREF_HEAP(myRef) << endl;
+    cout << DEREF_HEAP(myRef) << endl; // 21
     DEREF_HEAP(myRef) = 100;
-    cout << DEREF_HEAP(myHeapVar) << endl;
+    cout << DEREF_HEAP(myHeapVar) << endl; // 100
 
     DELETE_HEAP(myHeapVar);
 
     cout << (IS_NULL_HEAP(myRef) ? "true" : "false") << endl;
+        // true
     DEREF_HEAP(myRef) = 100; // throws an exception
 }
