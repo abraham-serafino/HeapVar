@@ -18,7 +18,6 @@ int main(void) {
     cout << "bit: " << SIZEOF_BIT(myBitField[0]) << endl;
     cout << "int8: " << sizeof(int8) * 8 << endl;
     cout << "byte: " << sizeof(byte) * 8 << endl;
-    cout << "bit[9]: " << sizeof(myBitField) * 8 << endl;
     cout << "int16: " << sizeof(int16) * 8 << endl;
     cout << "char16: " << sizeof(char16) * 8 << endl;
     cout << "int: " << sizeof(int) * 8 << endl;
