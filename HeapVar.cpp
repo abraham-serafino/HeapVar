@@ -11,20 +11,20 @@ struct Exception {
     }
 };
 
+template <class T>
 struct HeapVar {
-    int* data;
+    T* data;
 
-    HeapVar& set (int& newValue) {
+    HeapVar& set (T& newValue) {
         if (!data) {
-            data = new int(newValue);
-        } else {
-            *data = newValue; 
+            data = new T;
         }
 
+        *data = newValue;
         return *this;
     }
 
-    int& get() const {
+    T& get() const {
         if (data == nullptr) {
             throw Exception("Null reference exception!");
         }
@@ -38,41 +38,42 @@ struct HeapVar {
     }
 };
 
+template <class T>
 struct Ptr {
     bool isHeap = false;
-    HeapVar* heapData;
-    int* data;
+    HeapVar<T>* heapData;
+    T* data;
 
     Ptr () {
         // empty
     }
 
-    Ptr (HeapVar* newValue) {
+    Ptr (HeapVar<T>* newValue) {
         Ptr::operator=(newValue);
     }
 
-    Ptr (int* newValue) {
+    Ptr (T* newValue) {
         Ptr::operator=(newValue);
     }
 
-    Ptr& operator= (HeapVar* newValue) {
+    Ptr& operator= (HeapVar<T>* newValue) {
         isHeap = true;
         heapData = newValue;
         data = nullptr;
         return *this;
     }
 
-    Ptr& operator= (int* newValue) {
+    Ptr& operator= (T* newValue) {
         isHeap = false;
         heapData = nullptr;
         data = newValue;
         return *this;
     }
 
-    Ptr& operator= (int newValue) {
+    Ptr& operator= (T newValue) {
         if (isHeap) {
             if (!heapData) {
-                heapData = new HeapVar();
+                heapData = new HeapVar<T>();
             }
 
             (*heapData).set(newValue); 
@@ -88,7 +89,7 @@ struct Ptr {
         return *this;
     }
 
-    int& operator*() const {
+    T& operator*() const {
         if (isHeap) {
             if (heapData == nullptr) {
                 throw Exception("Null reference exception!");
@@ -129,12 +130,12 @@ struct Ptr {
 int main() {
     // C++ doesn't support this so we have to break declaration and
     // assignment onto separate lines.
-    Ptr ptr; //  = new HeapVar();
+    Ptr<int> ptr; //  = new HeapVar();
 
-    ptr = new HeapVar();
+    ptr = new HeapVar<int>();
     ptr = 33;
 
-    Ptr ptr2 = ptr;
+    Ptr<int> ptr2 = ptr;
 
     ptr2 = 30;
     cout << *ptr << endl; // 30
