@@ -128,11 +128,8 @@ struct Ptr {
 };
 
 int main() {
-    // C++ doesn't support this so we have to break declaration and
-    // assignment onto separate lines.
-    Ptr<int> ptr; //  = new HeapVar();
-
-    ptr = new HeapVar<int>();
+    Ptr<int> ptr = new HeapVar<int>(); // both of these will work
+    ptr = new HeapVar<int>(); // both of these will work
     ptr = 33;
 
     Ptr<int> ptr2 = ptr;
