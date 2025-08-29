@@ -162,9 +162,10 @@ int main() {
     cout << (*ptr) << endl; // still 99
 
     ptr2._delete(); // delete non-heap reference
+    cout << (ptr2.isNull() ? "true" : "false") << endl;
 
     try {
-        cout << (ptr2.isNull() ? "true" : "false") << endl << (*ptr2) << endl;
+        cout << (*ptr2) << endl;
     } catch (Exception e) {
         cout << e.message << endl;
     }
